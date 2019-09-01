@@ -1,8 +1,9 @@
 import types from './types';
 
 const actions = {
-  doSample: payload => ({
-    type: types.DO_SAMPLE,
+  getPlaces: payload => ({
+    type: types.GET_PLACES,
+    payload,
   }),
 };
 export default actions;

@@ -1,4 +1,4 @@
 const types = {
-  DO_SAMPLE: 'DO_SAMPLE',
+  GET_PLACES: 'GET_PLACES',
 };
 export default types;

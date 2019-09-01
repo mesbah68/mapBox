@@ -126,6 +126,7 @@ module.exports = options => ({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         BASE_API: JSON.stringify(process.env.BASE_API),
+        MAP_BOX_API_KEY: JSON.stringify(process.env.MAP_BOX_API_KEY),
       },
     }),
   ]),
