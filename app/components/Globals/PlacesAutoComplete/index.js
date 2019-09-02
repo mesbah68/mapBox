@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import placesActions from '../../ducks/places/actions';
 
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import {
   StyledAutoCompleteWrapper,
@@ -31,10 +29,12 @@ class PlacesAutoComplete extends Component {
     e.preventDefault();
     const query = this.state;
     const { getPlaces } = this.props;
+
     getPlaces({
       query,
       onSuccess: () => {},
       onFailed: message => {
+        // eslint-disable-next-line no-console
         console.log('onFailed Callback', message);
       },
     });
@@ -46,6 +46,7 @@ class PlacesAutoComplete extends Component {
 
   render() {
     const { query } = this.state;
+
     return (
       <StyledAutoCompleteWrapper>
         <StyledAutoCompleteForm onSubmit={this.handleSubmit}>
@@ -63,13 +64,8 @@ class PlacesAutoComplete extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  getPlaces: payload => dispatch(placesActions.getPlaces(payload)),
-});
+PlacesAutoComplete.propTypes = {
+  getPlaces: PropTypes.func,
+};
 
-const mapStateToProps = () => ({});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(PlacesAutoComplete);
+export default PlacesAutoComplete;

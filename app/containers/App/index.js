@@ -20,7 +20,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 // import SamplePage from 'containers/SamplePage/Loadable';
-import MapPage from 'containers/MapPage/Loadable';
+import PlacesPage from 'containers/PlacesPage/Loadable';
 
 // import PrivateRoutes from './PrivateRoutes';
 
@@ -34,7 +34,7 @@ function App() {
           render={({ location }) => {
             const routes = (
               <Switch location={location}>
-                <Route path={routers.map} component={MapPage} />
+                <Route path={routers.map} component={PlacesPage} />
               </Switch>
             );
             return routes;
