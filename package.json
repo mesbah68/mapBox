@@ -177,6 +177,7 @@
     "react-lazy-load": "^3.0.13",
     "react-loadable": "5.4.0",
     "react-map-gl": "^5.0.10",
+    "react-modal": "^3.10.1",
     "react-onsenui": "^1.11.1",
     "react-redux": "5.0.7",
     "react-router-dom": "4.3.1",

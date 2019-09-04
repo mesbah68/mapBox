@@ -4,4 +4,6 @@ const StyledPlacesWrapper = styled.div`
   height: 100vh;
   position: relative;
 `;
-export { StyledPlacesWrapper };
+const StyledModalWrapper = styled.form``;
+
+export { StyledPlacesWrapper, StyledModalWrapper };
