@@ -3,26 +3,10 @@ import PropTypes from 'prop-types';
 
 import Map from '../Globals/Map';
 import PlacesAutoComplete from '../Globals/PlacesAutoComplete';
+import MapLocationModal from './MapLocationModal';
 
-import { StyledPlacesWrapper, StyledModalWrapper } from './styles';
+import { StyledPlacesWrapper } from './styles';
 import MAP_INFO from '../../constants/mapInfo';
-
-import ReactModal from 'react-modal';
-
-const ModalStyles = {
-  overlay: {
-    zIndex: '9999999',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
 
 class Places extends Component {
   constructor(props) {
@@ -32,27 +16,14 @@ class Places extends Component {
       lat,
       lng,
       zoom,
-      modalIsOpen: false,
+      modalVisibility: false,
     };
 
     this.handleSetViewport = this.handleSetViewport.bind(this);
     this.handleSetLocation = this.handleSetLocation.bind(this);
     this.handleSetZoom = this.handleSetZoom.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
-    this.handleModalShow = this.handleModalShow.bind(this);
-    this.handleModalClose = this.handleModalClose.bind(this);
-  }
-
-  handleModalShow() {
-    this.setState({
-      modalIsOpen: true,
-    });
-  }
-
-  handleModalClose() {
-    this.setState({
-      modalIsOpen: false,
-    });
+    this.handleModalVisibility = this.handleModalVisibility.bind(this);
   }
 
   handleSetLocation(location) {
@@ -79,23 +50,24 @@ class Places extends Component {
   handleMapClick(e) {
     const [longitude, latitude] = e.lngLat;
     this.handleSetLocation({ latitude, longitude });
-    this.handleModalShow();
+    this.handleModalVisibility(true);
+  }
+  handleModalVisibility(modalVisibility) {
+    this.setState({
+      modalVisibility,
+    });
   }
 
   render() {
     const { getPlaces } = this.props;
-    const { lat, lng, zoom } = this.state;
+    const { lat, lng, zoom, modalVisibility } = this.state;
     return (
       <StyledPlacesWrapper>
-        <ReactModal
-          isOpen={this.state.modalIsOpen}
-          onRequestClose={this.handleModalClose}
-          style={ModalStyles}
-        >
-          <StyledModalWrapper>
-            <h1>modal content</h1>
-          </StyledModalWrapper>
-        </ReactModal>
+        {modalVisibility ? (
+          <MapLocationModal onSetModalVisibility={this.handleModalVisibility} />
+        ) : (
+          ''
+        )}
         <Map
           lat={lat}
           lng={lng}
