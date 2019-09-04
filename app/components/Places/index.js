@@ -17,15 +17,29 @@ class Places extends Component {
       zoom,
     };
     this.handleSetViewport = this.handleSetViewport.bind(this);
+    this.handleSetLocation = this.handleSetLocation.bind(this);
+    this.handleSetZoom = this.handleSetZoom.bind(this);
   }
 
-  handleSetViewport(viewport) {
-    const { latitude: lat, longitude: lng, zoom } = viewport;
+  handleSetLocation(location) {
+    const { latitude: lat, longitude: lng } = location;
     this.setState({
       lat,
       lng,
+    });
+  }
+
+  handleSetZoom(zoom) {
+    this.setState({
       zoom,
     });
+  }
+
+  handleSetViewport(viewport) {
+    const { latitude, longitude, zoom } = viewport;
+
+    this.handleSetZoom(zoom);
+    this.handleSetLocation({ latitude, longitude });
   }
 
   render() {
@@ -40,9 +54,10 @@ class Places extends Component {
           onSetViewport={this.handleSetViewport}
         />
         <PlacesAutoComplete
+          onSetLocation={this.handleSetLocation}
           getPlaces={getPlaces}
-          location={{ lat, lng }}
-          SetLocation={this.handleSetLocation}
+          lat={lat}
+          lng={lng}
         />
       </StyledPlacesWrapper>
     );

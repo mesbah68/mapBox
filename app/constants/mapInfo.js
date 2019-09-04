@@ -8,6 +8,7 @@ const MAP_INFO = {
     longitude: 51.2097323,
     zoom: 11,
   },
+  baseUrl: prefix => `https://${prefix ? `${prefix}.` : ''}snappmaps.ir/maps/api/place`,
 };
 
 export default MAP_INFO;

@@ -13,17 +13,16 @@ const token = process.env.MAP_BOX_API_KEY;
 
 const Map = props => {
   const { lat, lng, zoom, onSetViewport } = props;
-
   return (
     <StyledMapWrapper>
       <ReactMapGL
         mapboxApiAccessToken={token}
-        latitude={lat}
-        longitude={lng}
+        latitude={parseFloat(lat)}
+        longitude={parseFloat(lng)}
         zoom={zoom}
         onViewportChange={onSetViewport}
       >
-        <Marker latitude={lat} longitude={lng}>
+        <Marker latitude={parseFloat(lat)} longitude={parseFloat(lng)}>
           <StyledMarkerWrapper>
             <img src={markerIcon} alt="" />
           </StyledMarkerWrapper>

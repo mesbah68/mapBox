@@ -4,9 +4,11 @@ import axiosConfig from '../../utils/axiosConfig';
 import URI from '../../constants/uri';
 
 const api = {
-  getPlaces({ query }) {
-    const url = URI.GOOGLE_MAP.TEXT_SEARCH({
+  getPlaces({ query, lat, lng }) {
+    const url = URI.SMAPP_SEARCH_LOCATION({
       query,
+      lat,
+      lng,
     });
     const config = axiosConfig({ url, method: 'GET' });
     return axios(config);

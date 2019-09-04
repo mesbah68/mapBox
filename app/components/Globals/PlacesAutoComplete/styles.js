@@ -46,10 +46,31 @@ const StyledAutoCompleteButton = styled.div`
 const StyledIcon = styled.i`
   font-size: calc(${props => props.theme.defaultRem} * 0.8);
 `;
+const StyledAutoCompleteSuggestionWrapper = styled.div``;
+
+const StyledAutoCompleteSuggestion = styled.ul`
+  width: 100%;
+  padding: 0;
+  background-color: #fff;
+  margin-top: 0.5rem;
+  display: inline-block;
+  max-height: 13rem;
+  overflow-y: scroll;
+`;
+
+const StyledAutoCompleteSuggestionItems = styled.li`
+  display: inline-block;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 0.6rem;
+`;
 
 export {
   StyledAutoCompleteWrapper,
   StyledAutoCompleteForm,
   StyledAutoCompleteButton,
   StyledIcon,
+  StyledAutoCompleteSuggestionWrapper,
+  StyledAutoCompleteSuggestion,
+  StyledAutoCompleteSuggestionItems,
 };

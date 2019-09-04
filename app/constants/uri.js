@@ -1,10 +1,9 @@
-const MAP_INFO_API = 'https://maps.googleapis.com/maps/api'
-const MAP_INFO_KEY = process.env.MAP_BOX_API_KEY
+import MapInfo from '../constants/mapInfo'
 
 const URI = {
-  GOOGLE_MAP: {
-    TEXT_SEARCH: ({ query }) =>
-      `${MAP_INFO_API}/place/textsearch/json?query=${query}&key=${MAP_INFO_KEY}`,
-  },
+  SMAPP_SEARCH_LOCATION: ({ query, lat, lng }) =>
+      `${MapInfo.baseUrl(
+        'search',
+      )}/autocomplete/json/?input=${query}&location=${lat},${lng}`,
 };
 export default URI;

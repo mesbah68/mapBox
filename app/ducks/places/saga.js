@@ -7,17 +7,18 @@ import defaultMessages from '../../constants/defaultMessages';
 export function* getPlaces(action) {
   // console.log('saga', action);
   const {
-    payload: { query, onSuccess, onFailed },
+    payload: { query, lat, lng, onSuccess, onFailed },
   } = action;
   try {
-    const response = yield call(api.getPlaces, { query });
+    const response = yield call(api.getPlaces, { query, lat, lng });
     const {
-      data: { results },
+      data: { predictions },
     } = response;
-    yield call(onSuccess, results);
+    yield call(onSuccess, predictions);
   } catch (e) {
     console.log('err', e);
     let error = defaultMessages.promiseFailed;
+
     if (e.response) {
       const {
         response: {
