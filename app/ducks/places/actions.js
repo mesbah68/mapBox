@@ -5,5 +5,9 @@ const actions = {
     type: types.GET_PLACES,
     payload,
   }),
+  addPlace: payload => ({
+    type: types.ADD_PLACE,
+    payload,
+  }),
 };
 export default actions;

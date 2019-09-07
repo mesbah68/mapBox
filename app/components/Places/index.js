@@ -24,6 +24,7 @@ class Places extends Component {
     this.handleSetZoom = this.handleSetZoom.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
     this.handleModalVisibility = this.handleModalVisibility.bind(this);
+    this.handleAddLocationPin = this.handleAddLocationPin.bind(this);
   }
 
   handleSetLocation(location) {
@@ -58,13 +59,29 @@ class Places extends Component {
     });
   }
 
+  handleAddLocationPin(location, callback = () => {}) {
+    const { locationName, locationInfo } = location;
+    const { lat, lng } = this.state;
+    const { onAddPlace } = this.props;
+    onAddPlace({
+      lat,
+      lng,
+      locationInfo,
+      locationName,
+    });
+    setTimeout(callback, 0);
+  }
+
   render() {
     const { getPlaces } = this.props;
     const { lat, lng, zoom, modalVisibility } = this.state;
     return (
       <StyledPlacesWrapper>
         {modalVisibility ? (
-          <MapLocationModal onSetModalVisibility={this.handleModalVisibility} />
+          <MapLocationModal
+            onSetModalVisibility={this.handleModalVisibility}
+            onAddLocationPin={this.handleAddLocationPin}
+          />
         ) : (
           ''
         )}
@@ -91,6 +108,7 @@ Places.propTypes = {
   lat: PropTypes.number,
   lng: PropTypes.number,
   zoom: PropTypes.number,
+  onAddPlace: PropTypes.func.isRequired,
 };
 
 Places.defaultProps = {

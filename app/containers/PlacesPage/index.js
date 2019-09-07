@@ -16,10 +16,10 @@ import { StyledPlacesContainer } from './styles';
 /* eslint-disable react/prefer-stateless-function */
 class PlacesPage extends Component {
   render() {
-    const { getPlaces } = this.props;
+    const { getPlaces, addPlace } = this.props;
     return (
       <StyledPlacesContainer>
-        <Places getPlaces={getPlaces} />
+        <Places getPlaces={getPlaces} onAddPlace={addPlace} />
       </StyledPlacesContainer>
     );
   }
@@ -27,12 +27,14 @@ class PlacesPage extends Component {
 
 const mapDispatchToProps = dispatch => ({
   getPlaces: payload => dispatch(placesActions.getPlaces(payload)),
+  addPlace: payload => dispatch(placesActions.addPlace(payload)),
 });
 
 const mapStateToProps = () => ({});
 
 PlacesPage.propTypes = {
-  getPlaces: PropTypes.func.isRequired,
+  getPlaces: PropTypes.func,
+  addPlace: PropTypes.func,
 };
 
 export default withRouter(

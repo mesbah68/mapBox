@@ -1,16 +1,16 @@
 import types from './types';
 
 const sampleDefaultState = {
-  sample: null,
+  places: [],
 };
 
 const sampleReducer = (state = sampleDefaultState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case types.DO_SAMPLE:
+    case types.ADD_PLACE:
       return {
         ...state,
-        sample: payload,
+        places: [...state.places, payload],
       };
     default:
       return state;
