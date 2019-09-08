@@ -114,8 +114,8 @@ class Places extends Component {
           ''
         )}
         <Map
-          lat={lat}
-          lng={lng}
+          lat={parseFloat(lat)}
+          lng={parseFloat(lng)}
           zoom={zoom}
           places={places}
           onSetViewport={this.handleSetViewport}
@@ -125,8 +125,8 @@ class Places extends Component {
         <PlacesAutoComplete
           onSetLocation={this.handleSetLocation}
           getPlaces={getPlaces}
-          lat={lat}
-          lng={lng}
+          lat={parseFloat(lat)}
+          lng={parseFloat(lng)}
         />
         {SelectedPinModalVisibility ? (
           <SelectedPinModal

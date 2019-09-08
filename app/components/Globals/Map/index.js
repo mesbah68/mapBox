@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import ReactMapGL, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-// import d3 from 'd3-ease';
 
 import markerIcon from '../../../resources/images/marker-icon.png';
 import MAP_INFO from '../../../constants/mapInfo';
@@ -26,18 +25,14 @@ const Map = props => {
     <StyledMapWrapper>
       <ReactMapGL
         mapboxApiAccessToken={token}
-        latitude={parseFloat(lat)}
-        longitude={parseFloat(lng)}
+        latitude={lat}
+        longitude={lng}
         zoom={zoom}
         onViewportChange={onSetViewport}
         onClick={onclick}
       >
         {places.map((marker, index) => (
-          <Marker
-            key={index}
-            latitude={parseFloat(marker.lat)}
-            longitude={parseFloat(marker.lng)}
-          >
+          <Marker key={index} latitude={marker.lat} longitude={marker.lng}>
             <StyledMarkerWrapper onClick={() => onMarkerClick(marker)}>
               <img src={markerIcon} alt="" />
             </StyledMarkerWrapper>

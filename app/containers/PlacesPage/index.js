@@ -5,12 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import placesActions from '../../ducks/places/actions';
-
 import placesSelectors from '../../ducks/places/selectors';
-
-// import { withRouter } from 'react-router-dom';
-// import PropTypes from 'prop-types';
-
 import Places from './../../components/Places';
 
 import { StyledPlacesContainer } from './styles';
