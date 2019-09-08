@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import ReactMapGL, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+// import d3 from 'd3-ease';
 
 import markerIcon from '../../../resources/images/marker-icon.png';
 import MAP_INFO from '../../../constants/mapInfo';

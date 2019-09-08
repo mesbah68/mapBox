@@ -6,7 +6,7 @@ const MAP_INFO = {
   viewport: {
     latitude: 35.6967329,
     longitude: 51.2097323,
-    zoom: 11,
+    zoom: 13,
   },
   baseUrl: prefix => `https://${prefix ? `${prefix}.` : ''}snappmaps.ir/maps/api/place`,
 };

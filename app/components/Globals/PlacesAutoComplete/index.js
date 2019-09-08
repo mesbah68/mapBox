@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PlacesAutoCompleteSuggestion from './PlacesAutoCompleteSuggestion';
-
 import PropTypes from 'prop-types';
+
+import PlacesAutoCompleteSuggestion from './PlacesAutoCompleteSuggestion';
 
 import {
   StyledAutoCompleteWrapper,

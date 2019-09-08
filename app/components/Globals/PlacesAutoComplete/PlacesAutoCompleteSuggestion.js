@@ -23,6 +23,7 @@ const PlacesAutoCompleteSuggestion = props => {
             <StyledAutoCompleteSuggestionItems
               onClick={() => {
                 onSetLocation({ ...suggestion.location });
+                console.log({ ...suggestion.location });
                 onSetAutoCompleteSuggestionVisibility(false);
               }}
               key={index}
