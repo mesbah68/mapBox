@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Map from '../Globals/Map';
 import PlacesAutoComplete from '../Globals/PlacesAutoComplete';
 import MapLocationModal from './MapLocationModal';
+import SelectedPinModal from './SelectedPinModal';
 
 import { StyledPlacesWrapper } from './styles';
 import MAP_INFO from '../../constants/mapInfo';
@@ -17,6 +18,8 @@ class Places extends Component {
       lng,
       zoom,
       modalVisibility: false,
+      selectedMarker: {},
+      SelectedPinModalVisibility: false,
     };
 
     this.handleSetViewport = this.handleSetViewport.bind(this);
@@ -25,6 +28,8 @@ class Places extends Component {
     this.handleMapClick = this.handleMapClick.bind(this);
     this.handleModalVisibility = this.handleModalVisibility.bind(this);
     this.handleAddLocationPin = this.handleAddLocationPin.bind(this);
+    this.handleShowPinTooltip = this.handleShowPinTooltip.bind(this);
+    this.handlePinModalVisibility = this.handlePinModalVisibility.bind(this);
   }
 
   handleSetLocation(location) {
@@ -59,6 +64,12 @@ class Places extends Component {
     });
   }
 
+  handlePinModalVisibility(SelectedPinModalVisibility) {
+    this.setState({
+      SelectedPinModalVisibility,
+    });
+  }
+
   handleAddLocationPin(location, callback = () => {}) {
     const { locationName, locationInfo } = location;
     const { lat, lng } = this.state;
@@ -72,9 +83,26 @@ class Places extends Component {
     setTimeout(callback, 0);
   }
 
+  handleShowPinTooltip(selectedMarker) {
+    this.setState({
+      selectedMarker,
+      SelectedPinModalVisibility: true,
+      lat: selectedMarker.lat,
+      lng: selectedMarker.lng,
+    });
+  }
+
   render() {
-    const { getPlaces } = this.props;
-    const { lat, lng, zoom, modalVisibility } = this.state;
+    const { getPlaces, places, deletePlace } = this.props;
+    const {
+      lat,
+      lng,
+      zoom,
+      modalVisibility,
+      selectedMarker,
+      SelectedPinModalVisibility,
+    } = this.state;
+
     return (
       <StyledPlacesWrapper>
         {modalVisibility ? (
@@ -89,8 +117,10 @@ class Places extends Component {
           lat={lat}
           lng={lng}
           zoom={zoom}
+          places={places}
           onSetViewport={this.handleSetViewport}
           onclick={this.handleMapClick}
+          onMarkerClick={this.handleShowPinTooltip}
         />
         <PlacesAutoComplete
           onSetLocation={this.handleSetLocation}
@@ -98,6 +128,15 @@ class Places extends Component {
           lat={lat}
           lng={lng}
         />
+        {SelectedPinModalVisibility ? (
+          <SelectedPinModal
+            selectedMarker={selectedMarker}
+            onSetPinModalVisibility={this.handlePinModalVisibility}
+            onDeletePlace={deletePlace}
+          />
+        ) : (
+          ''
+        )}
       </StyledPlacesWrapper>
     );
   }
@@ -109,6 +148,8 @@ Places.propTypes = {
   lng: PropTypes.number,
   zoom: PropTypes.number,
   onAddPlace: PropTypes.func.isRequired,
+  places: PropTypes.array,
+  deletePlace: PropTypes.func,
 };
 
 Places.defaultProps = {

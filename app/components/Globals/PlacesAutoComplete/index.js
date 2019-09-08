@@ -122,6 +122,9 @@ class PlacesAutoComplete extends Component {
           <PlacesAutoCompleteSuggestion
             onSetLocation={onSetLocation}
             suggestionItems={suggestionItems}
+            onSetAutoCompleteSuggestionVisibility={
+              this.handleSetPlacesAutoCompleteSuggestionVisibility
+            }
           />
         ) : (
           ''

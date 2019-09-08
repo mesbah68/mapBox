@@ -10,14 +10,21 @@ import {
 } from './styles';
 
 const PlacesAutoCompleteSuggestion = props => {
-  const { suggestionItems, onSetLocation } = props;
+  const {
+    suggestionItems,
+    onSetLocation,
+    onSetAutoCompleteSuggestionVisibility,
+  } = props;
   return (
     <StyledAutoCompleteSuggestionWrapper>
       {suggestionItems.length && suggestionItems ? (
         <StyledAutoCompleteSuggestion>
           {suggestionItems.map((suggestion, index) => (
             <StyledAutoCompleteSuggestionItems
-              onClick={() => onSetLocation({ ...suggestion.location })}
+              onClick={() => {
+                onSetLocation({ ...suggestion.location });
+                onSetAutoCompleteSuggestionVisibility(false);
+              }}
               key={index}
             >
               {suggestion.name}
@@ -34,6 +41,7 @@ const PlacesAutoCompleteSuggestion = props => {
 PlacesAutoCompleteSuggestion.propTypes = {
   suggestionItems: PropTypes.array,
   onSetLocation: PropTypes.func,
+  onSetAutoCompleteSuggestionVisibility: PropTypes.func,
 };
 
 PlacesAutoCompleteSuggestion.defaultProps = {

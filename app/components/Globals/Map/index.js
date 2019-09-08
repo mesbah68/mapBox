@@ -12,7 +12,15 @@ import { StyledMapWrapper, StyledMarkerWrapper } from './styles';
 const token = process.env.MAP_BOX_API_KEY;
 
 const Map = props => {
-  const { lat, lng, zoom, onSetViewport, onclick } = props;
+  const {
+    lat,
+    lng,
+    zoom,
+    onSetViewport,
+    onclick,
+    places,
+    onMarkerClick,
+  } = props;
   return (
     <StyledMapWrapper>
       <ReactMapGL
@@ -23,11 +31,17 @@ const Map = props => {
         onViewportChange={onSetViewport}
         onClick={onclick}
       >
-        <Marker latitude={parseFloat(lat)} longitude={parseFloat(lng)}>
-          <StyledMarkerWrapper>
-            <img src={markerIcon} alt="" />
-          </StyledMarkerWrapper>
-        </Marker>
+        {places.map((marker, index) => (
+          <Marker
+            key={index}
+            latitude={parseFloat(marker.lat)}
+            longitude={parseFloat(marker.lng)}
+          >
+            <StyledMarkerWrapper onClick={() => onMarkerClick(marker)}>
+              <img src={markerIcon} alt="" />
+            </StyledMarkerWrapper>
+          </Marker>
+        ))}
       </ReactMapGL>
     </StyledMapWrapper>
   );
@@ -39,6 +53,8 @@ Map.propTypes = {
   zoom: PropTypes.number,
   onSetViewport: PropTypes.func.isRequired,
   onclick: PropTypes.func,
+  onMarkerClick: PropTypes.func,
+  places: PropTypes.array,
 };
 
 Map.defaultProps = {
@@ -46,6 +62,7 @@ Map.defaultProps = {
   lng: MAP_INFO.viewport.longitude,
   zoom: MAP_INFO.viewport.zoom,
   onclick: () => {},
+  onMarkerClick: () => {},
 };
 
 export default Map;

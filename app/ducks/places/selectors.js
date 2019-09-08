@@ -1,4 +1,4 @@
 const selectors = {
-  sample: state => state.get('app').sample,
+  places: state => state.get('app').places,
 };
 export default selectors;

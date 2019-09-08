@@ -9,5 +9,9 @@ const actions = {
     type: types.ADD_PLACE,
     payload,
   }),
+  deletePlace: payload => ({
+    type: types.DELETE_PLACE,
+    payload,
+  }),
 };
 export default actions;

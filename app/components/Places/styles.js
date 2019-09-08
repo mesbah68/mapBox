@@ -4,7 +4,9 @@ const StyledPlacesWrapper = styled.div`
   height: 100vh;
   position: relative;
 `;
-const StyledModalWrapper = styled.form``;
+const StyledModalWrapper = styled.form`
+  min-width: 12rem;
+`;
 const StyledModalLabel = styled.label`
   padding: 0.5rem;
   font-size: 0.8rem;
@@ -41,6 +43,17 @@ const StyledAutoCompleteButton = styled.div`
     margin : 0 0.5rem;
 
 }
+button.delete {
+  cursor: pointer;
+  background-color: red;
+  color: #fff;
+  width: 30%;
+  height: 2rem;
+  border-radius: 0.2rem;
+  font-size : 0.8rem;
+  margin : 0 0.5rem;
+
+}
 button.cancle {
   cursor: pointer;
   background-color: #be2828;
@@ -70,6 +83,12 @@ const ModalStyles = {
   },
 };
 
+const StyledPinTooltip = styled.div``;
+const StyledPinModalLabel = styled.div`
+  padding: 0.5rem 1rem;
+  text-align: left;
+`;
+
 export {
   StyledPlacesWrapper,
   StyledModalWrapper,
@@ -77,5 +96,7 @@ export {
   StyledModalLabel,
   StyledModalSection,
   StyledAutoCompleteButton,
+  StyledPinTooltip,
+  StyledPinModalLabel,
   ModalStyles,
 };
