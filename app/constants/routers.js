@@ -1,5 +1,5 @@
 const routers = {
   sample: '/',
-  map: '/map'
+  map: '/map',
 };
 export default routers;
